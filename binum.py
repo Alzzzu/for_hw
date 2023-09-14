@@ -16,4 +16,4 @@ for el in a:
 
     if len(tempo) == 3:
         tempo.append(el)
-        print(f"{el}: {tempo}")
+        print(f"{el}: {tempo[::-1]}")
