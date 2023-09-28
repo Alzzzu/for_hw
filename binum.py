@@ -1,19 +1,29 @@
+import re
+import math
+def get_unique_numbers(numbers):
+    list_of_unique_numbers = []
+    unique_numbers = set(numbers)
 
-a = list(map(int, input("введите числа через пробел: ").split()))
-for el in a:
-    top = el//2
-    counter = 1
-    pod_el = 0
-    res = {}
-    tempo = []
-    for i in range(1, top+1):
-        if el % i == 0:
-            counter += 1
-            tempo.append(i)
-        if counter > 4:
-            tempo = []
-            break
+    for number in unique_numbers:
+        list_of_unique_numbers.append(number)
 
-    if len(tempo) == 3:
-        tempo.append(el)
-        print(f"{el}: {tempo[::-1]}")
+    return list_of_unique_numbers
+def encoding(str,lenka):
+    a = [i for i in str]
+    a = get_unique_numbers(a)
+    string = ""
+    lenk = round(math.log(lenka, 2))
+    coded = []
+    for i in range(len(a)):
+        n =bin(i).strip("0b")
+        if len(n)< lenk:
+            n = "0" *(lenk-len(n)) +n
+        coded.append(n)
+    for el in str:
+        ind = a.index(el)
+        string += coded[ind]
+    return string
+
+
+str = input()
+print(encoding(str, len(str)))
